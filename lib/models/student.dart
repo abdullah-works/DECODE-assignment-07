@@ -35,6 +35,7 @@ class Student {
   // .fromMap() Constructor
   // Convert Map to Student Object
   Student.fromMap(Map<String, dynamic> map) {
+    id = map[colId];
     name = map[colName];
     email = map[colEmail];
     mobile = map[colMobile];

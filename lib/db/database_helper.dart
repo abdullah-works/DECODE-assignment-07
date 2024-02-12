@@ -90,8 +90,28 @@ class DatabaseHelper {
     }
 
     // custom delay
-    await Future.delayed(const Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 3));
 
     return students;
+  }
+
+  // delete operation
+  Future<int> deleteStudent(int id) async {
+    Database db = await instance.database;
+    int result =
+        await db.rawDelete('DELETE FROM $tableStudent where id=?', [id]);
+
+    // simple delete
+    // int result = await db.delete(tableStudent, where: 'id=?', whereArgs: [id]);
+    return result;
+  }
+
+  // update
+  Future<int> updateStudent(Student student) async {
+    Database db = await instance.database;
+
+    int result = await db.update(tableStudent, student.toMap(),
+        where: 'id=?', whereArgs: [student.id]);
+    return result;
   }
 }

@@ -3,9 +3,16 @@ import 'package:student_registration_app/models/student.dart';
 import 'package:student_registration_app/widgets/info_container.dart';
 
 class StudentCard extends StatelessWidget {
-  const StudentCard({super.key, required this.studentData});
+  const StudentCard({
+    super.key,
+    required this.studentData,
+    required this.onDelete,
+    required this.onUpdate,
+  });
 
   final Student studentData;
+  final void Function() onDelete;
+  final void Function() onUpdate;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +28,7 @@ class StudentCard extends StatelessWidget {
         children: [
           Text(
             studentData.name,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.w500,
               color: Colors.white,
@@ -55,6 +62,17 @@ class StudentCard extends StatelessWidget {
                 foregroundColor: Colors.black87,
                 fontSize: 14,
               ),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                  child: ElevatedButton(
+                      onPressed: onDelete, child: const Text('Delete'))),
+              const SizedBox(width: 10),
+              Expanded(
+                  child: ElevatedButton(
+                      onPressed: onUpdate, child: const Text('Update'))),
             ],
           )
         ],
