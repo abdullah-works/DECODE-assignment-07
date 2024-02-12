@@ -2,6 +2,7 @@ import 'package:student_registration_app/utility/data_store.dart';
 
 class Student {
   Student({
+    this.id,
     required this.name,
     required this.email,
     required this.mobile,

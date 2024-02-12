@@ -37,6 +37,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   sqflite: ^2.3.2
   path_provider: ^2.1.2
+  flutter_spinkit: ^5.2.0
+  sqflite_common_ffi: ^2.3.2+1
+  # Used this instead of (fluttertoast) because it doesn't support Linux.
+  # Only Android, iOS & Web.
+  flutter_toastify: ^1.0.4
 
 dev_dependencies:
   flutter_test:

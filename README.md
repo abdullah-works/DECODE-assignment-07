@@ -9,7 +9,7 @@ This (repository) is a Flutter Project containing specifically Dart Code (soluti
 
 Create a Flutter app to register students for a program. The app will:
 1. Create, Retrieve, Update & Delete Students info.<br>
-2. Use SQL Lite Database for the data storage & retrieval.<br>
+2. Use SQLite Database for the data storage & retrieval.<br>
 3. Validate the Email, Mobile TextFields.<br>
 4. Use Dropdown for Uni & Courses TextFields.<br>
 5. Have a good design for Student Card when displaying Student Info.<br>

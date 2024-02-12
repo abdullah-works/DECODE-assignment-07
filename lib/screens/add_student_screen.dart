@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:student_registration_app/db/database_helper.dart';
 import 'package:student_registration_app/models/student.dart';
+import 'package:student_registration_app/screens/student_list_screen.dart';
 import 'package:student_registration_app/utility/data_store.dart';
 
 class AddStudentScreen extends StatelessWidget {
@@ -72,7 +73,9 @@ class AddStudentScreen extends StatelessWidget {
               DropdownButtonFormField(
                 isExpanded: true,
                 decoration: const InputDecoration(
-                    border: OutlineInputBorder(), hintText: 'Select a course'),
+                  border: OutlineInputBorder(),
+                  hintText: 'Select a course',
+                ),
                 items: course.map((String item) {
                   return DropdownMenuItem(value: item, child: Text(item));
                 }).toList(),
@@ -125,9 +128,17 @@ class AddStudentScreen extends StatelessWidget {
                         await DatabaseHelper.instance.saveStudent(student);
 
                     if (result > 0) {
-                      print('Saved');
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content:
+                                Text('SUCCESS: The information is saved.')),
+                      );
                     } else {
-                      print('Failed');
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content:
+                                Text('FAILED: The information is not saved.')),
+                      );
                     }
                     formKey.currentState!.reset();
                   }
@@ -137,6 +148,19 @@ class AddStudentScreen extends StatelessWidget {
                     foregroundColor: Colors.black),
                 child: const Text('Save'),
               ),
+              const SizedBox(height: 8),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.purple,
+                    foregroundColor: Colors.white,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return const StudentListScreen();
+                    }));
+                  },
+                  child: const Text('View All')),
             ],
           ),
         ),

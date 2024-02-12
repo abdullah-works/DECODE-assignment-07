@@ -11,7 +11,6 @@ class DatabaseHelper {
   static Database? _database;
 
   // getter for database
-
   Future<Database> get database async {
     _database ??= await initializeDatabase();
     return _database!;
@@ -74,5 +73,25 @@ class DatabaseHelper {
     // based on the result value, we will know whether the record was saved
     // OR not saved. Same thing will apply in other operations.
     return result;
+  }
+
+  // read operation
+  Future<List<Student>> getAllStudents() async {
+    final List<Student> students = [];
+    Database db = await instance.database;
+
+    // getting the list of student objects stored as maps in student table
+    List<Map<String, dynamic>> listMap = await db.query(tableStudent);
+
+    // converting each item in the list to Student object and storing it into the students List.
+    for (var item in listMap) {
+      final student = Student.fromMap(item);
+      students.add(student);
+    }
+
+    // custom delay
+    await Future.delayed(const Duration(seconds: 5));
+
+    return students;
   }
 }

@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:student_registration_app/screens/add_student_screen.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() {
+  // Initialize FFI
+  sqfliteFfiInit();
+
+  // Change the default factory.
+  databaseFactory = databaseFactoryFfi;
   runApp(const MyApp());
 }
 
