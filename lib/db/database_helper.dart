@@ -106,12 +106,29 @@ class DatabaseHelper {
     return result;
   }
 
-  // update
+  // update operation
   Future<int> updateStudent(Student student) async {
     Database db = await instance.database;
 
     int result = await db.update(tableStudent, student.toMap(),
         where: 'id=?', whereArgs: [student.id]);
     return result;
+  }
+
+  // search operation
+  Future<List<Student>> searchStudents(String name) async {
+    Database db = await instance.database;
+    List<Student> studentList = [];
+
+    List<Map<String, Object?>> listMapOfStudents = await db
+        .query(tableStudent, where: 'name like ?', whereArgs: ['%$name%']);
+
+    for (var studentMap in listMapOfStudents) {
+      Student student = Student.fromMap(studentMap);
+      studentList.add(student);
+    }
+
+    await Future.delayed(const Duration(seconds: 3));
+    return studentList;
   }
 }

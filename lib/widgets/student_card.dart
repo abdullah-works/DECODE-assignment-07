@@ -26,43 +26,49 @@ class StudentCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            studentData.name,
-            style: const TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.w500,
-              color: Colors.white,
-              letterSpacing: 1.5,
-              height: 1.5,
-            ),
+          Row(
+            children: [
+              InfoContainer(
+                  backgroundColor: Colors.black,
+                  text: studentData.id.toString()),
+              Text(
+                studentData.name,
+                style: const TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                  letterSpacing: 1.5,
+                  height: 1.5,
+                ),
+              ),
+            ],
           ),
           InfoContainer(
             backgroundColor: Colors.black54,
             text: studentData.course,
             fontSize: 16,
           ),
-          InfoContainer(
-            backgroundColor: Colors.white54,
-            text: studentData.email,
-            foregroundColor: Colors.black87,
-            fontSize: 14,
-          ),
           Row(
             children: [
+              InfoContainer(
+                backgroundColor: Colors.white54,
+                text: studentData.email,
+                foregroundColor: Colors.black87,
+                fontSize: 14,
+              ),
               InfoContainer(
                 backgroundColor: Colors.greenAccent,
                 text: studentData.mobile,
                 foregroundColor: Colors.black87,
                 fontSize: 14,
               ),
-              const SizedBox(width: 8),
-              InfoContainer(
-                backgroundColor: Colors.cyanAccent,
-                text: studentData.uni,
-                foregroundColor: Colors.black87,
-                fontSize: 14,
-              ),
             ],
+          ),
+          InfoContainer(
+            backgroundColor: Colors.cyanAccent,
+            text: studentData.uni,
+            foregroundColor: Colors.black87,
+            fontSize: 14,
           ),
           Row(
             children: [

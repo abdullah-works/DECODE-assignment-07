@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:student_registration_app/db/database_helper.dart';
 import 'package:student_registration_app/models/student.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:student_registration_app/screens/search_student_screen.dart';
 import 'package:student_registration_app/screens/update_screen.dart';
 import 'package:student_registration_app/widgets/student_card.dart';
 
@@ -63,8 +64,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
               onPressed: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) {
-                  // return const SearchStudentScreen();
-                  return const Placeholder();
+                  return const SearchStudentScreen();
                 }));
               },
               icon: const Icon(Icons.search)),
@@ -76,7 +76,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
             if (snapshot.hasData) {
               if (snapshot.data!.isEmpty) {
                 return const Center(
-                  child: Text('Nothing here. Try adding some enteries.'),
+                  child: Text('No student here. Try adding some.'),
                 );
               }
 
@@ -87,20 +87,26 @@ class _StudentListScreenState extends State<StudentListScreen> {
                   itemCount: students.length,
                   itemBuilder: ((context, index) {
                     Student student = students[index];
+
                     return StudentCard(
                       studentData: student,
                       onDelete: () {
+                        // Show Alert Dialog
                         deleteStudent(student);
                       },
                       onUpdate: () async {
-                        bool updated = await Navigator.of(context)
+                        // Go to Update Screen
+                        bool? updated = await Navigator.of(context)
                             .push(MaterialPageRoute(builder: (context) {
                           return UpdateScreen(student: student);
                         }));
 
-                        if (updated) {
-                          setState(() {});
+                        // Because, maybe the user comes back from that screen
+                        // without updating the Student, So, updated will be null
+                        if (updated == null) {
+                          return;
                         }
+                        setState(() {});
                       },
                     );
                   }));
