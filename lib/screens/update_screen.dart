@@ -64,6 +64,12 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   if (text == null || text.trim().isEmpty) {
                     return 'Please enter your email';
                   }
+                  final bool emailValid = RegExp(
+                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                      .hasMatch(text);
+                  if (!emailValid) {
+                    return 'Please enter a valid email.';
+                  }
                   email = text;
                   return null;
                 },
@@ -80,6 +86,12 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 validator: (text) {
                   if (text == null || text.trim().isEmpty) {
                     return 'Please enter your mobile number';
+                  }
+
+                  final bool mobileValid =
+                      RegExp(r"^(?:[+0]3)?[0-9]{11}$").hasMatch(text);
+                  if (!mobileValid) {
+                    return 'Please enter a valid phone number.';
                   }
                   mobile = text;
                   return null;
@@ -151,8 +163,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
                           await DatabaseHelper.instance.updateStudent(student);
 
                       if (result > 0) {
-                        print(result);
-                        print(student.id);
                         // ScaffoldMessenger.of(context).showSnackBar(
                         //   const SnackBar(
                         //       content: Text('SUCCESS: The record is updated.')),

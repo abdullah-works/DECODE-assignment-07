@@ -12,6 +12,11 @@ List<String> university = [
   'IM Sciences University',
   'Fast NUCES, Peshawar',
   'Iqra National University',
+  'UET Peshawar',
+  'Khyber Medical University - KMU',
+  'City University of Science & Information Technology',
+  'Abasyn University',
+  'CECOS University of IT & Emerging Sciences',
 ];
 
 const tableStudent = 'student_tbl';
