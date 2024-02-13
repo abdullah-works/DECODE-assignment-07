@@ -57,7 +57,10 @@ class _StudentListScreenState extends State<StudentListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black87,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.white,
         title: const Text('Student List'),
         actions: [
           IconButton(
@@ -116,7 +119,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
             }
             // No need to write else.
             // else
-            return const SpinKitSpinningLines(color: Colors.black);
+            return const SpinKitSpinningLines(color: Colors.white);
           })),
     );
   }

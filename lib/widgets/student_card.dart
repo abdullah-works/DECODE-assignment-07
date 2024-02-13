@@ -20,7 +20,11 @@ class StudentCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       decoration: BoxDecoration(
-          color: Colors.deepPurpleAccent,
+          gradient: const LinearGradient(colors: [
+            Colors.deepPurple,
+            Colors.purple,
+          ]),
+          // color: Colors.deepPurpleAccent,
           borderRadius: BorderRadius.circular(8)),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -31,6 +35,7 @@ class StudentCard extends StatelessWidget {
               InfoContainer(
                   backgroundColor: Colors.black,
                   text: studentData.id.toString()),
+              const SizedBox(width: 8),
               Text(
                 studentData.name,
                 style: const TextStyle(
@@ -48,37 +53,52 @@ class StudentCard extends StatelessWidget {
             text: studentData.course,
             fontSize: 16,
           ),
+          const SizedBox(height: 8),
           Row(
             children: [
               InfoContainer(
-                backgroundColor: Colors.white54,
+                backgroundColor: Colors.white70,
                 text: studentData.email,
                 foregroundColor: Colors.black87,
                 fontSize: 14,
               ),
+              const SizedBox(width: 4),
               InfoContainer(
-                backgroundColor: Colors.greenAccent,
+                backgroundColor: Colors.white70,
                 text: studentData.mobile,
                 foregroundColor: Colors.black87,
                 fontSize: 14,
               ),
             ],
           ),
+          const SizedBox(height: 4),
           InfoContainer(
-            backgroundColor: Colors.cyanAccent,
+            backgroundColor: Colors.white70,
             text: studentData.uni,
             foregroundColor: Colors.black87,
             fontSize: 14,
           ),
+          const SizedBox(height: 8),
           Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Expanded(
-                  child: ElevatedButton(
-                      onPressed: onDelete, child: const Text('Delete'))),
+              ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.redAccent.withOpacity(0.8),
+                    foregroundColor: Colors.white.withOpacity(0.9),
+                  ),
+                  icon: const Icon(Icons.delete_forever),
+                  onPressed: onDelete,
+                  label: const Text('Delete')),
               const SizedBox(width: 10),
-              Expanded(
-                  child: ElevatedButton(
-                      onPressed: onUpdate, child: const Text('Update'))),
+              ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green.withOpacity(0.8),
+                    foregroundColor: Colors.white.withOpacity(0.9),
+                  ),
+                  icon: const Icon(Icons.update),
+                  onPressed: onUpdate,
+                  label: const Text('Update')),
             ],
           )
         ],
