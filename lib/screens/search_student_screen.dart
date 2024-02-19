@@ -74,7 +74,7 @@ class _SearchStudentScreenState extends State<SearchStudentScreen> {
         title: const Text('Search Here...'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
             TextField(
@@ -124,14 +124,18 @@ class _SearchStudentScreenState extends State<SearchStudentScreen> {
                               deleteStudent(student);
                             },
                             onUpdate: () async {
-                              bool updated = await Navigator.of(context)
+                              // Go to Update Screen
+                              bool? updated = await Navigator.of(context)
                                   .push(MaterialPageRoute(builder: (context) {
                                 return UpdateScreen(student: student);
                               }));
 
-                              if (updated) {
-                                setState(() {});
+                              // Because, maybe the user comes back from that screen
+                              // without updating the Student, So, updated will be null
+                              if (updated == null) {
+                                return;
                               }
+                              setState(() {});
                             },
                           );
                         });

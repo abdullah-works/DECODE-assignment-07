@@ -3,6 +3,7 @@ import 'package:student_registration_app/screens/add_student_screen.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() {
+  // Only for Linux
   // Initialize FFI
   sqfliteFfiInit();
 

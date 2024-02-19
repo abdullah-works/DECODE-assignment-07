@@ -54,7 +54,8 @@ class StudentCard extends StatelessWidget {
             fontSize: 16,
           ),
           const SizedBox(height: 8),
-          Row(
+          Wrap(
+            runSpacing: 4,
             children: [
               InfoContainer(
                 backgroundColor: Colors.white70,
